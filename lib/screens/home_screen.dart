@@ -6,6 +6,11 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {},
+          child: const Icon(Icons.add),
+          backgroundColor: Colors.black,
+        ),
         appBar: AppBar(
           backgroundColor: Color(0xff2D2D2D),
           title: Text('Notes App'),

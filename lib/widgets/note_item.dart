@@ -8,7 +8,8 @@ class NoteItem extends StatelessWidget {
     final Size size = MediaQuery.sizeOf(context);
     final double height = size.height;
     return Container(
-      margin: EdgeInsets.symmetric(vertical: 6, horizontal: 16),
+      margin: EdgeInsets.symmetric
+      (vertical: 6, horizontal: 16),
       decoration: BoxDecoration(
           color: Color(0xffFBE846), borderRadius: BorderRadius.circular(8)),
       child: Column(
