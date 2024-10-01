@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 
 class CustomTextField extends StatelessWidget {
@@ -8,23 +10,30 @@ class CustomTextField extends StatelessWidget {
   Color hintTextColor;
   TextEditingController? controller;
   final int maxLines;
+
+  void Function(String?)? onSaved;
+
   CustomTextField(
-      {required this.hintText,
+      {super.key,
+      required this.hintText,
       this.maxLines = 1,
       this.isPassword = false,
       required this.onChanged,
       this.textFieldColor = Colors.white,
-      this.hintTextColor = Colors.white});
+      this.hintTextColor = Colors.white,
+      this.onSaved});
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 8),
       child: TextFormField(
+        autovalidateMode: AutovalidateMode.onUserInteraction,
+        onSaved: onSaved,
         controller: controller,
         validator: (value) {
-          if (value!.isEmpty) {
-            return "This field is required";
+          if (value == null || value.isEmpty) {
+            return 'it cannot be empty';
           }
           return null;
         },

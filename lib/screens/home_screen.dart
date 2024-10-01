@@ -17,7 +17,7 @@ class HomeScreen extends StatelessWidget {
           foregroundColor: kPrimaryColor,
           onPressed: () {
             showModalBottomSheet(
-                backgroundColor: Color(0xff2D2D2D),
+                backgroundColor: const Color(0xff2D2D2D),
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(16)),
                 context: context,

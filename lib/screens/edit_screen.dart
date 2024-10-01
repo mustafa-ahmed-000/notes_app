@@ -17,6 +17,6 @@ class EditScreen extends StatelessWidget {
             )
           ],
         ),
-        body: EditScreenBody());
+        body: const EditScreenBody());
   }
 }

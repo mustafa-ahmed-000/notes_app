@@ -18,8 +18,8 @@ class NotesApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       routes: {
-        EditScreen.editScreenId: (context) => EditScreen(),
-        HomeScreen.homeScreenId: (context) => HomeScreen(),
+        EditScreen.editScreenId: (context) => const EditScreen(),
+        HomeScreen.homeScreenId: (context) => const HomeScreen(),
       },
       theme: ThemeData(
           brightness: Brightness.dark,
