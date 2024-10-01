@@ -10,13 +10,11 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        resizeToAvoidBottomInset:
-            true, // Ensures content adjusts when keyboard appears
-
         floatingActionButton: FloatingActionButton(
           foregroundColor: kPrimaryColor,
           onPressed: () {
             showModalBottomSheet(
+                isScrollControlled: true,
                 backgroundColor: const Color(0xff2D2D2D),
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(16)),

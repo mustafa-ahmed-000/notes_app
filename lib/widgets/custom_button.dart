@@ -4,11 +4,13 @@ class CustomButton extends StatelessWidget {
   final String text;
   VoidCallback onTap;
   Color buttonColor;
+  final isLoading;
   CustomButton(
       {super.key,
       required this.text,
       required this.onTap,
-      required this.buttonColor});
+      required this.buttonColor,
+      this.isLoading = false});
 
   @override
   Widget build(BuildContext context) {
@@ -22,10 +24,14 @@ class CustomButton extends StatelessWidget {
           height: 40,
           decoration: BoxDecoration(
               color: buttonColor, borderRadius: BorderRadius.circular(8)),
-          child: Text(
-            text,
-            style: const TextStyle(color: Colors.white),
-          ),
+          child: isLoading
+              ? CircularProgressIndicator(
+                  color: Colors.black,
+                )
+              : Text(
+                  text,
+                  style: const TextStyle(color: Colors.white),
+                ),
         ),
       ),
     );
