@@ -12,6 +12,9 @@ class HomeScreen extends StatelessWidget {
         floatingActionButton: FloatingActionButton(
           onPressed: () {
             showModalBottomSheet(
+                backgroundColor: Color(0xff2D2D2D),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(16)),
                 context: context,
                 builder: (context) {
                   return const AddNoteBottomSheet();
