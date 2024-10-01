@@ -12,7 +12,7 @@ class CustomAppBar extends StatelessWidget {
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(8),
           color: Colors.white.withOpacity(0.05)),
-      child: Icon(Icons.search),
+      child: const Icon(Icons.search),
     );
   }
 }

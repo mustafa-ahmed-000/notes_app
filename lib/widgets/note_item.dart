@@ -8,15 +8,15 @@ class NoteItem extends StatelessWidget {
     final Size size = MediaQuery.sizeOf(context);
     final double height = size.height;
     return Container(
-      margin: EdgeInsets.symmetric
+      margin: const EdgeInsets.symmetric
       (vertical: 6, horizontal: 16),
       decoration: BoxDecoration(
-          color: Color(0xffFBE846), borderRadius: BorderRadius.circular(8)),
+          color: const Color(0xffFBE846), borderRadius: BorderRadius.circular(8)),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.end,
         children: [
           ListTile(
-            title: Text(
+            title: const Text(
               "Flutter tips",
               style: TextStyle(
                   color: Colors.black,
@@ -32,7 +32,7 @@ class NoteItem extends StatelessWidget {
             ),
             trailing: IconButton(
                 onPressed: () {},
-                icon: Icon(
+                icon: const Icon(
                   Icons.delete,
                   color: Colors.black,
                   size: 30,
