@@ -5,10 +5,13 @@ import 'package:notes_app/widgets/note_screen_body.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
-
+  static const homeScreenId = "HomeScreen"; 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        resizeToAvoidBottomInset:
+            true, // Ensures content adjusts when keyboard appears
+
         floatingActionButton: FloatingActionButton(
           onPressed: () {
             showModalBottomSheet(

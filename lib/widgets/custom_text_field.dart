@@ -7,8 +7,10 @@ class CustomTextField extends StatelessWidget {
   Color textFieldColor;
   Color hintTextColor;
   TextEditingController? controller;
+  final int maxLines;
   CustomTextField(
       {required this.hintText,
+      this.maxLines = 1,
       this.isPassword = false,
       required this.onChanged,
       this.textFieldColor = Colors.white,
@@ -27,6 +29,7 @@ class CustomTextField extends StatelessWidget {
           return null;
         },
         onChanged: onChanged,
+        maxLines: maxLines,
         obscureText: isPassword,
         decoration: InputDecoration(
           hintText: hintText,
