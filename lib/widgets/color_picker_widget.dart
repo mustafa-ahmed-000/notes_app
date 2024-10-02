@@ -6,9 +6,9 @@ import 'package:notes_app/helpers/show_snack_bar.dart';
 
 class MyColorPicker extends StatefulWidget {
   const MyColorPicker(
-      {super.key, required this.getPickedColor, this.disableSnackBar = false});
+      {super.key, required this.getPickedColor, this.enableSnackBar = false});
   final Function(int) getPickedColor;
-  final bool disableSnackBar;
+  final bool enableSnackBar;
 
   @override
   State<MyColorPicker> createState() => _MyColorPickerState();
@@ -57,7 +57,7 @@ class _MyColorPickerState extends State<MyColorPicker> {
           onPressed: () {
             setState(() => currentColor = pickerColor);
             widget.getPickedColor(currentColor.value);
-            widget.disableSnackBar
+            widget.enableSnackBar
                 ? showSnackBar(
                     context: context, message: "color changed succeffuly")
                 : null;

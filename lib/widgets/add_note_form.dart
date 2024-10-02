@@ -27,7 +27,9 @@ class _AddNoteFormState extends State<AddNoteForm> {
   String? title, subTitle;
   int? chosenColor;
   getPickedColor(int pickedColor) {
-    chosenColor = pickedColor;
+    setState(() {
+      chosenColor = pickedColor;
+    });
   }
 
   @override
@@ -56,12 +58,28 @@ class _AddNoteFormState extends State<AddNoteForm> {
             onChanged: (onChanged) {},
             hintTextColor: kPrimaryColor,
           ),
-          CustomButton(
-              text: "Pick a Color",
-              onTap: () {
-                pick_a_color(context: context, getPickedColor: getPickedColor);
-              },
-              buttonColor: kPrimaryColor),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                "Choose note color: ",
+                style: TextStyle(
+                  fontSize: 22,
+                ),
+              ),
+              GestureDetector(
+                onTap: () {
+                  pick_a_color(
+                      context: context, getPickedColor: getPickedColor);
+                },
+                child: CircleAvatar(
+                  // text: "Pick a note Color",
+                  //,
+                  backgroundColor: Color(chosenColor ?? 0xff75DCD7),
+                ),
+              ),
+            ],
+          ),
           BlocBuilder<AddNoteCubit, AddNoteState>(
             builder: (context, state) {
               return CustomButton(

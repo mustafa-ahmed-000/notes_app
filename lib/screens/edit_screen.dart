@@ -20,13 +20,16 @@ class EditScreen extends StatefulWidget {
 class _EditScreenState extends State<EditScreen> {
   int? chosenColor;
   getPickedColor(int pickedColor) {
-    chosenColor = pickedColor;
+    setState(() {
+      chosenColor = pickedColor;
+    });
   }
 
   @override
   Widget build(BuildContext context) {
     NoteModel myNoteModel =
         ModalRoute.of(context)!.settings.arguments as NoteModel;
+
     String? title, subTitle;
     return Scaffold(
         appBar: AppBar(
@@ -41,6 +44,8 @@ class _EditScreenState extends State<EditScreen> {
                 myNoteModel.save();
                 BlocProvider.of<AllNoteCubit>(context).fetchAllNotes();
                 Navigator.pop(context);
+                showSnackBar(
+                    context: context, message: "note updated successfully");
               },
               icon: Icons.check,
             )
@@ -65,15 +70,28 @@ class _EditScreenState extends State<EditScreen> {
               },
               hintTextColor: kPrimaryColor,
             ),
-            CustomButton(
-                text: "Change the color of the note",
-                onTap: () {
-                  pick_a_color(
-                      context: context,
-                      getPickedColor: getPickedColor,
-                      disableSnackBar: true);
-                },
-                buttonColor: kPrimaryColor),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  "Choose note color: ",
+                  style: TextStyle(
+                    fontSize: 22,
+                  ),
+                ),
+                GestureDetector(
+                  onTap: () {
+                    pick_a_color(
+                        context: context,
+                        getPickedColor: getPickedColor,
+                        enableSnackBar: true);
+                  },
+                  child: CircleAvatar(
+                    backgroundColor: Color(chosenColor ?? myNoteModel.color),
+                  ),
+                ),
+              ],
+            ),
           ],
         ));
   }

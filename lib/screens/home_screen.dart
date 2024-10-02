@@ -29,7 +29,7 @@ class HomeScreen extends StatelessWidget {
         appBar: AppBar(
           backgroundColor: const Color(0xff2D2D2D),
           title: const Text('Notes App'),
-          actions: [CustomAppBarIcon(icon: Icons.search, onTap: () {})],
+          centerTitle: true,
         ),
         body: const NoteScreenBody()
         // No need to set backgroundColor here. Let the theme control it.

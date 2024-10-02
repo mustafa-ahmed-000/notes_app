@@ -20,7 +20,6 @@ class CustomButton extends StatelessWidget {
         padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 8),
         child: Container(
           alignment: Alignment.center,
-          width: double.infinity,
           height: 40,
           decoration: BoxDecoration(
               color: buttonColor, borderRadius: BorderRadius.circular(8)),
