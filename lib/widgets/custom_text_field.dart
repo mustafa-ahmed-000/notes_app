@@ -3,16 +3,15 @@ import 'package:flutter/material.dart';
 class CustomTextField extends StatelessWidget {
   final String hintText;
   final bool isPassword;
-  Function(String) onChanged;
-  Color textFieldColor;
-  Color hintTextColor;
-  TextEditingController? controller;
+ final Function(String) onChanged;
+ final Color textFieldColor;
+ final Color hintTextColor;
   final int maxLines;
   final String initialValue; 
 
-  void Function(String?)? onSaved;
+final  void Function(String?)? onSaved;
 
-  CustomTextField(
+ const CustomTextField(
       {super.key,
       required this.initialValue  , 
       required this.hintText,
@@ -31,7 +30,6 @@ class CustomTextField extends StatelessWidget {
         initialValue: initialValue,
         autovalidateMode: AutovalidateMode.onUserInteraction,
         onSaved: onSaved,
-        controller: controller,
         validator: (value) {
           if (value == null || value.isEmpty) {
             return 'it cannot be empty';

@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:notes_app/cubits/add_note_cubit/add_note_cubit.dart';
+import 'package:notes_app/constants.dart';
 import 'package:notes_app/cubits/note_cubit/cubit/note_cubit_cubit.dart';
 import 'package:notes_app/models/note_model.dart';
 import 'package:notes_app/screens/edit_screen.dart';
+import 'package:notes_app/widgets/delete_note_widget.dart';
 
 class NoteItem extends StatelessWidget {
   final NoteModel noteModel;
@@ -11,8 +12,6 @@ class NoteItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Size size = MediaQuery.sizeOf(context);
-    final double height = size.height;
     return GestureDetector(
       onTap: () {
         Navigator.pushNamed(context, EditScreen.editScreenId,
@@ -41,16 +40,7 @@ class NoteItem extends StatelessWidget {
                     color: Colors.black
                         .withOpacity(0.4)), // Set the color for the subtitle
               ),
-              trailing: IconButton(
-                  onPressed: () {
-                    noteModel.delete();
-                    BlocProvider.of<AllNoteCubit>(context).fetchAllNotes();
-                  },
-                  icon: const Icon(
-                    Icons.delete,
-                    color: Colors.black,
-                    size: 30,
-                  )),
+              trailing: DeleteNoteWidget(noteModel: noteModel),
             ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
@@ -67,3 +57,4 @@ class NoteItem extends StatelessWidget {
     );
   }
 }
+

@@ -6,7 +6,6 @@ import 'package:notes_app/helpers/picking_a_color.dart';
 import 'package:notes_app/helpers/show_snack_bar.dart';
 import 'package:notes_app/models/note_model.dart';
 import 'package:notes_app/widgets/custom_app_bar_icon.dart';
-import 'package:notes_app/widgets/custom_button.dart';
 import 'package:notes_app/widgets/custom_text_field.dart';
 
 class EditScreen extends StatefulWidget {
@@ -73,7 +72,7 @@ class _EditScreenState extends State<EditScreen> {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text(
+              const  Text(
                   "Choose note color: ",
                   style: TextStyle(
                     fontSize: 22,

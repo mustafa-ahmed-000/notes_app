@@ -1,4 +1,3 @@
-import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_colorpicker/flutter_colorpicker.dart';
@@ -15,8 +14,8 @@ class MyColorPicker extends StatefulWidget {
 }
 
 class _MyColorPickerState extends State<MyColorPicker> {
-  Color pickerColor = Color(0xff443a49);
-  Color currentColor = Color(0xff443a49);
+  Color pickerColor = const Color(0xff443a49);
+  Color currentColor = const Color(0xff443a49);
 // ValueChanged<Color> callback
   void changeColor(Color color) {
     setState(() => pickerColor = color);
