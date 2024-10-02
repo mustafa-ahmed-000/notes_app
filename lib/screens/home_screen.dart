@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:notes_app/constants.dart';
-import 'package:notes_app/cubits/note_cubit/cubit/note_cubit_cubit.dart';
 import 'package:notes_app/widgets/add_note_bottom_sheet.dart';
 import 'package:notes_app/widgets/custom_app_bar_Icon.dart';
 import 'package:notes_app/widgets/note_screen_body.dart';
@@ -11,37 +9,30 @@ class HomeScreen extends StatelessWidget {
   static const homeScreenId = "HomeScreen";
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => AllNoteCubit(),
-      child: Scaffold(
-          floatingActionButton: FloatingActionButton(
-            foregroundColor: kPrimaryColor,
-            onPressed: () {
-              showModalBottomSheet(
-                  isScrollControlled: true,
-                  backgroundColor: const Color(0xff2D2D2D),
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(16)),
-                  context: context,
-                  builder: (context) {
-                    return const AddNoteBottomSheet();
-                  });
-            },
-            backgroundColor: Colors.black,
-            child: const Icon(Icons.add),
-          ),
-          appBar: AppBar(
-            backgroundColor: const Color(0xff2D2D2D),
-            title: const Text('Notes App'),
-            actions: const [
-              CustomAppBarIcon(
-                icon: Icons.search,
-              )
-            ],
-          ),
-          body: const NoteScreenBody()
-          // No need to set backgroundColor here. Let the theme control it.
-          ),
-    );
+    return Scaffold(
+        floatingActionButton: FloatingActionButton(
+          foregroundColor: kPrimaryColor,
+          onPressed: () {
+            showModalBottomSheet(
+                isScrollControlled: true,
+                backgroundColor: const Color(0xff2D2D2D),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(16)),
+                context: context,
+                builder: (context) {
+                  return const AddNoteBottomSheet();
+                });
+          },
+          backgroundColor: Colors.black,
+          child: const Icon(Icons.add),
+        ),
+        appBar: AppBar(
+          backgroundColor: const Color(0xff2D2D2D),
+          title: const Text('Notes App'),
+          actions: [CustomAppBarIcon(icon: Icons.search, onTap: () {})],
+        ),
+        body: const NoteScreenBody()
+        // No need to set backgroundColor here. Let the theme control it.
+        );
   }
 }

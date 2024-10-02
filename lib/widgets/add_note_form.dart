@@ -1,5 +1,4 @@
-import 'dart:developer';
-
+import 'package:date_format/date_format.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:notes_app/constants.dart';
@@ -29,6 +28,7 @@ class _AddNoteFormState extends State<AddNoteForm> {
       child: Column(
         children: [
           CustomTextField(
+            initialValue: "",
             onSaved: (value) {
               title = value;
             },
@@ -37,6 +37,7 @@ class _AddNoteFormState extends State<AddNoteForm> {
             hintTextColor: kPrimaryColor,
           ),
           CustomTextField(
+            initialValue: "",
             onSaved: (value) {
               subTitle = value;
             },
@@ -51,12 +52,16 @@ class _AddNoteFormState extends State<AddNoteForm> {
                 isLoading: state is AddNoteLoading ? true : false,
                 text: "Add",
                 onTap: () {
+                  var currentDate = DateTime.now();
+
+                  var formatedDate =
+                      formatDate(currentDate, [dd, '/', mm, '/', yyyy]);
                   if (formKey.currentState!.validate()) {
                     formKey.currentState!.save();
                     final myNoteModel = NoteModel(
                         title: title!,
                         subTitle: subTitle!,
-                        date: DateTime.now().toString(),
+                        date: formatedDate,
                         color: Colors.blue.value);
                     BlocProvider.of<AddNoteCubit>(context).addNote(myNoteModel);
                   } else {

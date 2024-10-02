@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 
 class CustomTextField extends StatelessWidget {
@@ -10,11 +8,13 @@ class CustomTextField extends StatelessWidget {
   Color hintTextColor;
   TextEditingController? controller;
   final int maxLines;
+  final String initialValue; 
 
   void Function(String?)? onSaved;
 
   CustomTextField(
       {super.key,
+      required this.initialValue  , 
       required this.hintText,
       this.maxLines = 1,
       this.isPassword = false,
@@ -28,6 +28,7 @@ class CustomTextField extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 8),
       child: TextFormField(
+        initialValue: initialValue,
         autovalidateMode: AutovalidateMode.onUserInteraction,
         onSaved: onSaved,
         controller: controller,
