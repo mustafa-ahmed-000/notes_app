@@ -15,12 +15,13 @@ class NoteItem extends StatelessWidget {
     final double height = size.height;
     return GestureDetector(
       onTap: () {
-        Navigator.pushNamed(context, EditScreen.editScreenId , arguments: noteModel);
+        Navigator.pushNamed(context, EditScreen.editScreenId,
+            arguments: noteModel);
       },
       child: Container(
         margin: const EdgeInsets.symmetric(vertical: 6, horizontal: 16),
         decoration: BoxDecoration(
-            color: const Color(0xffFBE846),
+            color: Color(noteModel.color),
             borderRadius: BorderRadius.circular(8)),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.end,

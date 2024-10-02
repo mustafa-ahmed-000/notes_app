@@ -1,9 +1,14 @@
+import 'dart:developer';
+
 import 'package:date_format/date_format.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:notes_app/constants.dart';
 import 'package:notes_app/cubits/add_note_cubit/add_note_cubit.dart';
+import 'package:notes_app/helpers/picking_a_color.dart';
+import 'package:notes_app/helpers/show_snack_bar.dart';
 import 'package:notes_app/models/note_model.dart';
+import 'package:notes_app/widgets/color_picker_widget.dart';
 import 'package:notes_app/widgets/custom_button.dart';
 import 'package:notes_app/widgets/custom_text_field.dart';
 
@@ -20,6 +25,11 @@ class _AddNoteFormState extends State<AddNoteForm> {
   final GlobalKey<FormState> formKey = GlobalKey();
   AutovalidateMode autovalidateMode = AutovalidateMode.disabled;
   String? title, subTitle;
+  int? chosenColor;
+  getPickedColor(int pickedColor) {
+    chosenColor = pickedColor;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Form(
@@ -46,6 +56,12 @@ class _AddNoteFormState extends State<AddNoteForm> {
             onChanged: (onChanged) {},
             hintTextColor: kPrimaryColor,
           ),
+          CustomButton(
+              text: "Pick a Color",
+              onTap: () {
+                pick_a_color(context: context, getPickedColor: getPickedColor);
+              },
+              buttonColor: kPrimaryColor),
           BlocBuilder<AddNoteCubit, AddNoteState>(
             builder: (context, state) {
               return CustomButton(
@@ -53,7 +69,6 @@ class _AddNoteFormState extends State<AddNoteForm> {
                 text: "Add",
                 onTap: () {
                   var currentDate = DateTime.now();
-
                   var formatedDate =
                       formatDate(currentDate, [dd, '/', mm, '/', yyyy]);
                   if (formKey.currentState!.validate()) {
@@ -62,8 +77,10 @@ class _AddNoteFormState extends State<AddNoteForm> {
                         title: title!,
                         subTitle: subTitle!,
                         date: formatedDate,
-                        color: Colors.blue.value);
+                        color: chosenColor ?? Colors.blueAccent.value);
                     BlocProvider.of<AddNoteCubit>(context).addNote(myNoteModel);
+                    showSnackBar(
+                        context: context, message: "note Added successfully ");
                   } else {
                     autovalidateMode = AutovalidateMode.always;
                     setState(() {});

@@ -2,8 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:notes_app/constants.dart';
 import 'package:notes_app/cubits/note_cubit/cubit/note_cubit_cubit.dart';
+import 'package:notes_app/helpers/picking_a_color.dart';
+import 'package:notes_app/helpers/show_snack_bar.dart';
 import 'package:notes_app/models/note_model.dart';
 import 'package:notes_app/widgets/custom_app_bar_icon.dart';
+import 'package:notes_app/widgets/custom_button.dart';
 import 'package:notes_app/widgets/custom_text_field.dart';
 
 class EditScreen extends StatefulWidget {
@@ -15,6 +18,11 @@ class EditScreen extends StatefulWidget {
 }
 
 class _EditScreenState extends State<EditScreen> {
+  int? chosenColor;
+  getPickedColor(int pickedColor) {
+    chosenColor = pickedColor;
+  }
+
   @override
   Widget build(BuildContext context) {
     NoteModel myNoteModel =
@@ -29,6 +37,7 @@ class _EditScreenState extends State<EditScreen> {
               onTap: () {
                 myNoteModel.title = title ?? myNoteModel.title;
                 myNoteModel.subTitle = subTitle ?? myNoteModel.subTitle;
+                myNoteModel.color = chosenColor ?? myNoteModel.color;
                 myNoteModel.save();
                 BlocProvider.of<AllNoteCubit>(context).fetchAllNotes();
                 Navigator.pop(context);
@@ -56,6 +65,15 @@ class _EditScreenState extends State<EditScreen> {
               },
               hintTextColor: kPrimaryColor,
             ),
+            CustomButton(
+                text: "Change the color of the note",
+                onTap: () {
+                  pick_a_color(
+                      context: context,
+                      getPickedColor: getPickedColor,
+                      disableSnackBar: true);
+                },
+                buttonColor: kPrimaryColor),
           ],
         ));
   }
